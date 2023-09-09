@@ -3,5 +3,13 @@ uuid = "7cd94f6f-7b8d-4a56-a368-617787b692ab"
 authors = ["Tor Erlend Fjelde <tor.erlend95@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+ArgParse = "c7e460c6-2fb9-53a9-8c5b-16f535851c63"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+DrWatson = "634d3b9d-ee7a-5ddf-bec9-22491ea816e1"
+LibGit2 = "76f85450-5226-5b5a-8eaa-529ad045b433"
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+
 [compat]
+DrWatson = "2"
 julia = "1.6"

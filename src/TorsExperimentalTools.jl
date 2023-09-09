@@ -56,10 +56,10 @@ function default_name(mod; include_commit_id=true)
     return name
 end
 
-export default_argparse_rules, parse_args, add_default_args!
+export @default_argparse_rules, @parse_args, add_default_args!
 include("argparse.jl")
 
-export runsdir, rundir, outputdir, interactive_checkout_maybe
+export run_from_args, runsdir, rundir, outputdir, plotsdir, interactive_checkout_maybe
 include("runs.jl")
 
 end

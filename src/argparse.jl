@@ -29,7 +29,7 @@ macro parse_args(argparsesettings, argsvar=:_args)
             $(esc(argsvar)) = $(esc(:ARGS))
         end
 
-        $(ArgParse.parse_args)($(esc(argsvar)), $argparsesettings)
+        $(ArgParse.parse_args)($(esc(argsvar)), $(esc(argparsesettings)))
     end
 end
 

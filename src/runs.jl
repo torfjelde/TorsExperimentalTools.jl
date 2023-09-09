@@ -9,12 +9,12 @@ Return a `Run` created from `mod` and `args`.
 """
 function run_from_args(mod, args)
     # TODO: Make `args` something nicer than a `Dict`.
-    name = default_name(mode, include_commit_id=!args.ignore_commit)
+    name = default_name(mod, include_commit_id=!args["ignore-commit"])
     return Run(name)
 end
 
 # Directory containing all the runs.
-runsdir(args...) = Drwatson.projectdir("runs", args...)
+runsdir(args...) = DrWatson.projectdir("runs", args...)
 
 # Directories for a particular run.
 rundir(run::Run, args...) = runsdir(run.name, args...)

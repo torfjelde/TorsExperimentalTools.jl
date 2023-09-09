@@ -1,0 +1,7 @@
+name = "TorsExperimentalTools"
+uuid = "7cd94f6f-7b8d-4a56-a368-617787b692ab"
+authors = ["Tor Erlend Fjelde <tor.erlend95@gmail.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1.6"

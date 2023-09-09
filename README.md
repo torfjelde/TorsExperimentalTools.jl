@@ -32,7 +32,7 @@ args = @parse_args argparsesettings
 # Load your package here instead of at the top of the file to avoid long startup times.
 using MyPackage
 # Create the run.
-run = run_from_args(args)
+run = run_from_args(MyPackage, args)
 
 # From her on, we simply use `run` to provide context to everything we do, e.g.
 # if we need to save some results, we'll get the path by calling `outputdir(run, args...)`.

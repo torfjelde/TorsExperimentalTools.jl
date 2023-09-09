@@ -29,21 +29,11 @@ joined with the commit id if `include_commit_id` is `true`.
 If path of `mod` is _not_ a git-repo, it is assumed to be a release,
 resulting in a name of the form `release-VERSION`.
 """
-function default_name(mod; include_commit_id=true)
+function default_name(mod::Module; kwargs...)
     mod_path = abspath(joinpath(dirname(pathof(mod)), ".."))
-
-    # Extract branch name and commit id
     local name
     try
-        githead = LibGit2.head(LibGit2.GitRepo(mod_path))
-        branchname = LibGit2.shortname(githead)
-
-        name = replace(branchname, "/" => "_")
-        if include_commit_id
-            gitcommit = LibGit2.peel(LibGit2.GitCommit, githead)
-            commitid = string(LibGit2.GitHash(gitcommit))
-            name *= "-$(commitid)"
-        end
+        name = default_name(mod_path; kwargs...)
     catch e
         if e isa LibGit2.GitError
             @info "No git repo found for $(mod_path); extracting name from package version."
@@ -51,6 +41,20 @@ function default_name(mod; include_commit_id=true)
         else
             rethrow(e)
         end
+    end
+
+    return name
+end
+function default_name(repo_path; include_commit_id=true)
+    # Extract branch name and commit id
+    githead = LibGit2.head(LibGit2.GitRepo(repo_path))
+    branchname = LibGit2.shortname(githead)
+
+    name = replace(branchname, "/" => "_")
+    if include_commit_id
+        gitcommit = LibGit2.peel(LibGit2.GitCommit, githead)
+        commitid = string(LibGit2.GitHash(gitcommit))
+        name *= "-$(commitid)"
     end
 
     return name

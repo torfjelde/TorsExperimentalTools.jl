@@ -28,7 +28,7 @@ DrWatson.plotsdir(run::Run, args...) = rundir(run, "plots", args...)
 
 Return the commit ID from the run name.
 
-Assumes `name` came form [`default_path`](@ref).
+Assumes `name` came form [`default_name`](@ref).
 """
 getcommit(run::String) = LibGit2.GitHash(split(run, "-")[end])
 

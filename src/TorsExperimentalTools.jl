@@ -3,6 +3,8 @@ module TorsExperimentalTools
 using Pkg: Pkg
 using ArgParse: ArgParse
 using LibGit2: LibGit2
+using Random: Random
+using UUIDs: uuid4
 
 using Dates
 using DrWatson
@@ -59,6 +61,8 @@ function default_name(repo_path; include_commit_id=true)
 
     return name
 end
+
+include("name_generator.jl")
 
 export @default_argparse_rules, @parse_args, add_default_args!
 include("argparse.jl")

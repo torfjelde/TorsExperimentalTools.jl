@@ -2,6 +2,8 @@ struct Run
     name::String
 end
 
+Run() = generate_name(; already_taken = available_runs_maybe())
+
 """
     run_from_args(mod::Module, args)
 
@@ -113,4 +115,12 @@ function available_runs(; prefix=nothing, commit=nothing, full_path=false)
     end
 
     return runs
+end
+
+function available_runs_maybe(; kwargs...)
+    try
+        return available_runs(; kwargs...)
+    catch e
+        return String[]
+    end
 end

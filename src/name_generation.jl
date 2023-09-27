@@ -215,9 +215,25 @@ const RIGHT_NAMES = [
     "ghoul",
 ]
 
+"""
+    generate_name([rng::Random.AbstractRNG]; kwargs...)
+
+Generate a random name.
+
+# Keyword arguments
+- `rng`: A random number generator. Default: `Random.default_rng()`.
+- `already_taken`: A set of names that are already taken. Default: `Set{String}()`.
+- `prefix`: A prefix to the name. Default: `""`.
+- `suffix`: A suffix to the name. Default: `""`.
+"""
 generate_name(; kwargs...) = generate_name(Random.default_rng(); kwargs...)
-function generate_name(rng::Random.AbstractRNG; already_taken = Set{String}())
-    name = rand(rng, LEFT_NAMES) * "_" * rand(rng, RIGHT_NAMES)
+function generate_name(
+    rng::Random.AbstractRNG;
+    already_taken = Set{String}(),
+    prefix::AbstractString = "",
+    suffix::AbstractString = "",
+)
+    name = prefix * rand(rng, LEFT_NAMES) * "_" * rand(rng, RIGHT_NAMES) * suffix
     if name in already_taken
         name *= string(uuid4())
     end

@@ -11,8 +11,8 @@ Return a `Run` created from `mod` and `args`.
 """
 function run_from_args(mod, args)
     # TODO: Make `args` something nicer than a `Dict`.
-    name = default_name(mod, include_commit_id=!args["ignore-commit"])
-    return Run(name)
+    name = default_name(mod, include_commit_id = !args["ignore-commit"])
+    return Run(generate_name(; already_taken = available_runs_maybe(), prefix = name))
 end
 
 # Directory containing all the runs.

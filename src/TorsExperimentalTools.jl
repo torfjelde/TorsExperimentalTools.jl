@@ -62,7 +62,7 @@ function default_name(repo_path; include_commit_id = true)
     return name
 end
 
-include("name_generator.jl")
+include("name_generation.jl")
 
 export @default_argparse_rules, @parse_args, add_default_args!
 include("argparse.jl")

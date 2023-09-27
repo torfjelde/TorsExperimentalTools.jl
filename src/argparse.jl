@@ -23,7 +23,7 @@ This is convenient when wanting to run a script using `include` instead of from 
 command line, for example allowing temporary halting of a long-running process to 
 save some results, and then resume.
 """
-macro parse_args(argparsesettings, argsvar=:_args)
+macro parse_args(argparsesettings, argsvar = :_args)
     return quote
         if !($(Expr(:escape, Expr(:isdefined, argsvar))))
             $(esc(argsvar)) = $(esc(:ARGS))

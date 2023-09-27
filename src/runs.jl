@@ -50,20 +50,17 @@ Check if commit of `source` matches current HEAD of `repodir`.
 
 If `source` is specified instead of `source_commit`, then `getcommit(source)` is used.
 """
-function interactive_checkout_maybe(source, repodir=projectdir())
+function interactive_checkout_maybe(source, repodir = projectdir())
     return interactive_checkout_maybe(getcommit(source), repodir)
 end
-function interactive_checkout_maybe(
-    source_commit::LibGit2.GitHash,
-    repodir=projectdir()
-)
+function interactive_checkout_maybe(source_commit::LibGit2.GitHash, repodir = projectdir())
     repo = LibGit2.GitRepo(repodir)
 
     if source_commit != getcommit(repo)
         print(
             "Run came from $(source_commit) but HEAD is ",
             "currently pointing to $(getcommit(repo)); ",
-            "do you want to checkout the correct branch? [y/N]: "
+            "do you want to checkout the correct branch? [y/N]: ",
         )
         answer = readline()
         if lowercase(answer) == "y"
@@ -96,7 +93,7 @@ Return available runs.
 - `full_path`: if `true`, the full path to each run will be returned rather
   than only their directory names.
 """
-function available_runs(; prefix=nothing, commit=nothing, full_path=false)
+function available_runs(; prefix = nothing, commit = nothing, full_path = false)
     runs = readdir(runsdir())
     if prefix !== nothing
         filter!(Base.Fix2(startswith, prefix), runs)

@@ -47,7 +47,7 @@ function default_name(mod::Module; kwargs...)
 
     return name
 end
-function default_name(repo_path; include_commit_id=true)
+function default_name(repo_path; include_commit_id = true)
     # Extract branch name and commit id
     githead = LibGit2.head(LibGit2.GitRepo(repo_path))
     branchname = LibGit2.shortname(githead)

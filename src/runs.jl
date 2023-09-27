@@ -2,7 +2,7 @@ struct Run
     name::String
 end
 
-Run() = generate_name(; already_taken = available_runs_maybe())
+Run() = Run(generate_name(; already_taken = available_runs_maybe()))
 
 """
     run_from_args(mod::Module, args)
